@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day Pihu! 🌹</title>
+    <style>
+        /* CSS STYLING */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffd1d1 0%, #fff0f0 100%); /* Rose Pink Theme */
+            color: #5a2a2a;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 100;
+            border: 2px solid #ff4d6d;
+        }
+
+        /* Sections */
+        .section {
+            display: none; /* Hidden by default */
+            min-height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .active {
+            display: flex;
+            animation: fadeIn 1s;
+        }
+
+        h1 { color: #d90429; margin-bottom: 20px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        p { line-height: 1.6; font-size: 1.2rem; color: #800f2f; }
+
+        /* Quiz Styles */
+        .quiz-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(255, 0, 50, 0.15);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #ffb3c1;
+        }
+
+        input {
+            padding: 12px;
+            border: 2px solid #ffccd5;
+            border-radius: 8px;
+            width: 70%;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        input:focus { border-color: #ff4d6d; }
+
+        button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover { background: #c9184a; transform: translateY(-2px); }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .gallery img, .gallery video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+
+        .gallery img:hover, .gallery video:hover {
+            transform: scale(1.05);
+            border-color: #ff4d6d;
+        }
+
+        /* Falling Petals Animation */
+        .petal {
+            position: absolute;
+            background-color: #ff4d6d;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px 0px 10px 0px;
+            animation: fall linear infinite;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="petals-container"></div>
+     <div class="music-player">
+    <p style="margin: 0 0 5px 0; font-size: 0.8rem; color: #d90429;">Play our song 🌹</p>
+    <audio controls loop>
+        <source src="o_n_e_d_i_r_e_c_t_i_o_n_-_steal_my_girl_(mp3.pm).mp3" type="audio/mpeg">
+    </audio>
+</div>
+   
+
+    <div class="container">
+
+        <div id="intro" class="section active">
+            <h1 style="font-size: 3rem;">Happy Rose Day Pihu! 🌹</h1>
+            <p>I have a surprise for you, but first, let's see if you remember our timeline...</p>
+            
+            <div class="quiz-box">
+                <p id="question-text" style="font-weight: bold;">Question 1: From which class have we been friends?</p>
+                <input type="text" id="answer-input" placeholder="Hint: Very small class...">
+                <button onclick="checkAnswer()">Submit Answer</button>
+                <p id="error-msg" style="color: #d90429; display: none; margin-top: 10px; font-weight: bold;">Wrong! Do you even know me? 😜 Try again!</p>
+            </div>
+        </div>
+
+        <div id="letter" class="section">
+            <h1>To My Best Friend, Pihu 🌹</h1>
+            <div style="background: rgba(255,255,255,0.95); padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(164, 22, 26, 0.1); text-align: left; border: 1px solid #ffccd5;">
+                <p>
+                    <b>Happy Rose Day!</b>
+                </p>
+                <p>
+                    I know I don't say this enough, but I miss you incredibly.
+                </p>
+                <p>
+                    From starting in <b>KG class</b> to becoming absolutely inseparable in <b>11th</b>, you've been the one constant in my life. I know lately I've been terrible at picking up calls. College work get so chaotic sometimes, and by the time I'm free, I realize it's late.
+                </p>
+                <p>
+                    But the distance between Dehradun and Solan is just geography. You are still my best friend, my Biotech genius, and my favorite person.
+                </p>
+                <p>
+                    Even though I can't give you a rose in person today, I made this digital garden of our memories for you.
+                </p>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button onclick="showGallery()">See Our Memories 📸</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="gallery-section" class="section">
+            <h1>Our Journey 🌹</h1>
+            <p>KG -> 11th -> Forever</p>
+
+            <div class="gallery">
+                 <video controls>
+                    <source src="vid2.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="vid.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div style="margin-top: 50px;">
+                <p>Love you & Miss you! ❤️</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // QUIZ LOGIC
+        let currentLevel = 1;
+
+        function checkAnswer() {
+            const input = document.getElementById('answer-input').value.toLowerCase().trim();
+            const questionText = document.getElementById('question-text');
+            const errorMsg = document.getElementById('error-msg');
+            const inputField = document.getElementById('answer-input');
+
+            // QUESTION 1: KG Class
+            if (currentLevel === 1) {
+                if (input.includes('kg') || input.includes('kindergarten') || input.includes('nursery')) {
+                    // Correct! Move to Q2
+                    currentLevel++;
+                    questionText.innerText = "Question 2: In which class did we become SO close?";
+                    inputField.value = "";
+                    inputField.placeholder = "Hint: High school times...";
+                    errorMsg.style.display = "none";
+                } else {
+                    errorMsg.style.display = "block";
+                    shakeBox();
+                }
+            } 
+            // QUESTION 2: 11th Class
+            else if (currentLevel === 2) {
+                if (input.includes('11') || input.includes('eleven') || input.includes('xi')) {
+                    // Correct! Unlock letter
+                    document.getElementById('intro').classList.remove('active');
+                    document.getElementById('letter').classList.add('active');
+                } else {
+                    errorMsg.style.display = "block";
+                    shakeBox();
+                }
+            }
+        }
+
+        function showGallery() {
+            document.getElementById('letter').classList.remove('active');
+            document.getElementById('gallery-section').classList.add('active');
+        }
+
+        function shakeBox() {
+            const box = document.querySelector('.quiz-box');
+            box.style.transform = "translateX(10px)";
+            setTimeout(() => { box.style.transform = "translateX(-10px)"; }, 100);
+            setTimeout(() => { box.style.transform = "translateX(0)"; }, 200);
+        }
+
+        // CREATE FALLING PETALS
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            for(let i=0; i<20; i++) {
+                let petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+                petal.style.width = Math.random() * 10 + 10 + 'px';
+                petal.style.height = petal.style.width;
+                container.appendChild(petal);
+            }
+        }
+        createPetals();
+    </script>
+</body>
+</html>
